@@ -1,10 +1,10 @@
 let tree = {
-    "1": { key: "1", 2: 7, 3: 9, 6: 14 },
-    "2": { key: "2", 3: 10, 4: 15 },
-    "3": { key: "3", 6: 2, 4: 11 },
-    "6": { key: "6", 5: 99 },
-    "4": { key: "4", 5: 6, 3: 11 },
-    "5": { key: "5" }
+    "1": { 2: 7, 3: 9, 6: 14 },
+    "2": { 3: 10, 4: 15 },
+    "3": { 6: 2, 4: 11 },
+    "6": { 5: 99 },
+    "4": { 5: 6, 3: 11 },
+    "5": {}
 }
 let queue = [{ key: "1", val: tree[1] }];
 let marked = [];
@@ -26,10 +26,6 @@ while (queue.length) {
     }
     marked[item.key] = true;
     for (let _key in item.val) {
-        if (isNaN(Number(_key))) {
-            continue
-        }
-
         if (dist[_key] > dist[item.key] + item.val[_key]) {
             dist[_key] = dist[item.key] + item.val[_key]
             queue.push({ key: _key, val: tree[_key] })
